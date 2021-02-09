@@ -120,7 +120,10 @@ def predict_pnemonia():
     if request.method=='POST':
         f = request.files['file']
 
-        file_path = os.path.join('uploads', secure_filename(f.filename))
+        # Save the file to ./uploads
+        basepath = os.path.dirname(__file__)
+        file_path = os.path.join(
+        basepath, 'uploads', secure_filename(f.filename))
         f.save(file_path)
 
         # Make prediction
